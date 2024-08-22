@@ -32,7 +32,8 @@
     "test": "vscode-test"
   },
   "dependencies": {
-    "got": "^14.4.2"
+    "got": "^14.4.2",
+    "node-html-parser": "^6.1.13"
   },
   "devDependencies": {
     "@types/vscode": "^1.92.0",
