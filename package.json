@@ -2,6 +2,7 @@
   "name": "pkg-go-dev",
   "displayName": "pkg-go-dev",
   "description": "Search and read documentations at pkg.go.dev directly from VSCode",
+  "type": "commonjs",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.92.0"
@@ -29,6 +30,9 @@
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test"
+  },
+  "dependencies": {
+    "got": "^14.4.2"
   },
   "devDependencies": {
     "@types/vscode": "^1.92.0",
