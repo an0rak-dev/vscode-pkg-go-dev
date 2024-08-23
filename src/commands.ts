@@ -16,10 +16,16 @@ export async function Search() {
     quickPick.items = searchResults.map(r => ({
         label: r.name, description: r.import, detail: r.synopsis 
     }));
-    let selection = quickPick.items[0];
-    quickPick.onDidChangeActive(e => selection = e[0]);
+    let selection = searchResults[0];
+    quickPick.onDidChangeActive(e => {
+        let filteredResults = searchResults.filter(r => r.import === e[0].description);
+        if (filteredResults.length > 0) {
+            selection = filteredResults[0];
+        }
+    })
     quickPick.onDidAccept(() => {
-        console.debug(`Selected ${selection.label}`);
+        vscode.commands.executeCommand("pkg-go-dev.show", selection.link);
+        quickPick.hide();
     });
     quickPick.onDidHide(() => quickPick.dispose());
     quickPick.show();
