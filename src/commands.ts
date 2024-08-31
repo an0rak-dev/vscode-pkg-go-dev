@@ -30,3 +30,23 @@ export async function Search() {
     quickPick.onDidHide(() => quickPick.dispose());
     quickPick.show();
 }
+
+export async function ShowDetails(pkgLink : URL) {
+    console.debug(`Showing details of page ${pkgLink}`);
+    try {
+        const details = await api.getPackageDetail(pkgLink.href);
+
+        const webview = vscode.window.createWebviewPanel("pkg-go-dev.detailView", `Detail of ${details.name}`, vscode.ViewColumn.Active, {
+            enableScripts: true,
+            enableFindWidget: true,
+        });
+
+        // TODO Create a dedicated viewobject for this panel with only relevant information
+        webview.webview.html = `
+            <h1>${details.name}</h1>
+        `;
+        webview.reveal();
+    } catch (e: any) {
+        vscode.window.showErrorMessage(`Error while retrieving detail of api ${e.message}`)
+    }
+}

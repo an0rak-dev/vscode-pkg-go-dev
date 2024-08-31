@@ -33,9 +33,10 @@
   },
   "dependencies": {
     "got": "^14.4.2",
-    "node-html-parser": "^6.1.13"
+    "jsdom": "^25.0.0"
   },
   "devDependencies": {
+    "@types/jsdom": "^21.1.7",
     "@types/mocha": "^10.0.7",
     "@types/node": "20.x",
     "@types/vscode": "^1.92.0",
